@@ -47,14 +47,14 @@ public class MovementManager : MonoBehaviour
             animatorController = currentMovement;
             changedMovement = true;
             animatorController.SetTrigger("ChangedMovement");
-            UIController.Instance.MovementText.text = animatorController.name;
         }
         else
         {
             animatorController = startMovement;
             changedMovement = false;
             animatorController.SetTrigger("ChangedMovement");
-            UIController.Instance.MovementText.text = animatorController.name;
+            
         }
+        UIController.Instance.MovementText.text = animatorController.name;
     }
 }

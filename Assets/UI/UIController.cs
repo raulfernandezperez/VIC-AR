@@ -16,4 +16,13 @@ public class UIController : MonoBehaviour
     [SerializeField] private Text movementText;
     public Text MovementText { get => movementText; set => movementText = value; }
 
+    private void Start()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+
+    }
+
 }
