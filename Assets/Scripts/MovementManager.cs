@@ -1,60 +1,90 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-
+﻿using System.Collections.Generic;
 using UnityEngine;
 using Sirenix.OdinInspector;
 
 
+
 public class MovementManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public static MovementManager Instance;
+
     [TitleGroup("Animator")]
-    [SerializeField] private Animator animatorController;
-    [SerializeField] [ReadOnly] private bool changedMovement;
+    [SerializeField] private RuntimeAnimatorController animatorController;
+    [SerializeField] private Animator animatorMovement;
+    [SerializeField] private Animator currentMovement;
+    [SerializeField] private Motion currentMotion;
+
+
+    [SerializeField] private Animator avatar;
+    [SerializeField] private Animator refAvatar;
 
     [TitleGroup("Settings")]
-    [SerializeField] private Animator currentMovement;
-    [SerializeField] private Animator startMovement;
+    [SerializeField] private GameObject startMovement;
+
     [TitleGroup("Movemements")]
-    [SerializeField] [ReadOnly] private List<Animator> movements;
+    [SerializeField] private List<Animator> movements;
+    public List<Animator> Movements { get => movements; set => movements = value; }
 
     private void Start()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 
         if (animatorController == null)
         {
-            animatorController = GetComponent<Animator>();
+            animatorController = GetComponent<RuntimeAnimatorController>();
         }
-        changedMovement = false;
 
-        movements.Add(currentMovement);
-        movements.Add(startMovement);
+        Initialize();
+
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            ChangeMovement();
-        }
+
     }
 
-
-    public void ChangeMovement()
+    private void OnValidate()
     {
-        if (!changedMovement)
+
+    }
+
+    private void Initialize()
+    {
+        refAvatar = Instantiate(avatar);
+        animatorMovement = refAvatar;
+
+    }
+
+    [Button("Añadir movimientos")]
+    private void AddMovementAnimator()
+    {
+        //animatorController
+    }
+    public void MovementChange(string _movementData)
+    {
+
+        foreach (Animator animator in Movements)
         {
-            animatorController = currentMovement;
-            changedMovement = true;
-            animatorController.SetTrigger("ChangedMovement");
+            if (animator.name == _movementData)
+            {
+                currentMovement = animator;
+                Debug.Log("Movimientos: " + Movements.IndexOf(animator));
+                //animatorController.AddMotion(currentMotion);
+                animatorMovement.SetInteger("state", Movements.IndexOf(animator));
+
+            }
         }
-        else
-        {
-            animatorController = startMovement;
-            changedMovement = false;
-            animatorController.SetTrigger("ChangedMovement");
-            
-        }
-        UIController.Instance.MovementText.text = animatorController.name;
+
+
+        //animatorController = currentMovement;
+        //animatorController.SetTrigger("ChangedMovement");
+
     }
 }

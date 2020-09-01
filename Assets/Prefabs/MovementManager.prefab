@@ -43,8 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d77f0a77f87e474fb64e4306b24f168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animatorController: {fileID: 0}
-  changedMovement: 0
+  animatorController: {fileID: 9100000, guid: 6e6e9a3bf2fc21b44bb7e262870322ee, type: 2}
+  animatorMovement: {fileID: 0}
   currentMovement: {fileID: 0}
+  currentMotion: {fileID: -203655887218126122, guid: a405d0649d6941a45b53b4973bcbeadf,
+    type: 3}
+  avatar: {fileID: 4063953249002980645, guid: 0401256fcbb16c941ba8b21609fd23e5, type: 3}
+  refAvatar: {fileID: 0}
   startMovement: {fileID: 5866666021909216657, guid: 41a5e98b577486d4f873a70b2f00397d,
     type: 3}
+  movements:
+  - {fileID: 0}
+  - {fileID: 5866666021909216657, guid: 41a5e98b577486d4f873a70b2f00397d, type: 3}
+  - {fileID: 5866666021909216657, guid: a3e3a9091ba502641826b40e490b99f4, type: 3}

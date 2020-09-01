@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/VIC-ARScene.unity
+    path: Assets/Scenes/VIC_ARScene.unity
     guid: bc01fc59d131cbf4a839f951878b9bc9
   - enabled: 0
     path: Assets/GoogleARCore/Examples/AugmentedImage/Scenes/AugmentedImage.unity
